@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block posts %}
-<form class="form" action = "{% url 'create' %}" method = "post">
+<form class="form" action = "{% url 'create' %}" method = "POST">
     {% csrf_token %}
 
     

@@ -33,7 +33,7 @@ def update(request, id):
     update_blog.content = request.POST['content']
     update_blog.pub_date = timezone.now()
     update_blog.save()
-    return redirect('main', update_blog.id)
+    return redirect('main')
 
 def delete(request, id):
     delete_blog = Blog.objects.get(id=id)
