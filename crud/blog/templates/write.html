@@ -3,8 +3,9 @@
 
 {% block posts %}
 <form class="form" action = "{% url 'create' %}" method = "POST">
-    {% csrf_token %}
 
+
+    {% csrf_token %}
     
     <div class="textForm">
         <input type="text" required class="textInput" name="title" id="title">
