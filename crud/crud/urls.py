@@ -25,4 +25,5 @@ urlpatterns = [
     path('edit/<str:id>', blog.views.edit, name ='edit'),
     path('update/<str:id>', blog.views.update, name='update'),
     path('delete/<str:id>', blog.views.delete, name ='delete'),
+    path('comment/<str:id>', blog.views.comment, name='comment'),
 ]

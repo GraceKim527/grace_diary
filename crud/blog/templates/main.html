@@ -63,7 +63,6 @@
 {% endblock %} 
 
 
-
 {% block modals %}
 
 {% for blog in blogs %}
@@ -123,6 +122,15 @@
                 삭제하기
               </a>
             </div>
+            {% for comment in blog.comments.all %} 
+                <p>{{ comment.text }}</p>
+            {% endfor %} 
+            <form method ="POST" action="{% url 'comment' blog.id %}">
+              {% csrf_token %}
+              <p><label for="id_text">댓글 : </label> 
+                <input type="text" name="text" maxlength="50" required="" id="id_text"></p>
+              <input type="submit" value="submit">
+            </form>
           </div>
         </div>
       </div>

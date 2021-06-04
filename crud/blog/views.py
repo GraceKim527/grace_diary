@@ -1,17 +1,32 @@
-from django.shortcuts import get_object_or_404, render
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from .models import Blog
-from .forms import CreateForm
+from .forms import CreateForm, CommentForm
+from django.http import request
 
 # Create your views here.
 
 def main(request):
     blogs = Blog.objects.all()
-    return render(request, 'main.html', {'blogs':blogs})
+    c_form = CommentForm()
+    return render(request, 'main.html', {'blogs':blogs, 'c_form':c_form})
 
 def write(request):
     return render(request, 'write.html')
+
+def comment(request, id):
+    blog = get_object_or_404(Blog,id=id)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post_id = blog
+            comment.text = form.cleaned_data['text']
+            comment.save()
+            return redirect('main') # 여기 id지움
+    else:
+        form=CommentForm()
+        return render(request, 'main.html', {'blog':blog, 'form':form})     
 
 def create(request):
     if request.method == 'POST':
