@@ -26,4 +26,6 @@ urlpatterns = [
     path('update/<str:id>', blog.views.update, name='update'),
     path('delete/<str:id>', blog.views.delete, name ='delete'),
     path('comment/<str:id>', blog.views.comment, name='comment'),
+    path('hashtag/', blog.views.hashtagform, name='hashtag'),
+    path('<int:hashtag_id>/search/', blog.views.search, name='search'),
 ]

@@ -3,18 +3,6 @@
 
 
 {% block posts %}
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Hashtag 검색
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {% for hashtag in hashtags.all %}
-    <a class="dropdown-item" href="{% url 'search' hashtag.id %}">{{ hashtag.name }}</a>
-    {% endfor %}
-  </div>
-</div>
-
 <!-- Portfolio Section-->
 <section class="page-section portfolio" id="portfolio">
   <div class="container">
@@ -66,7 +54,7 @@
 
 
 {% block modals %}
-
+{% for blog in hashtags.blog_set.all %} 
 {% for blog in blogs %}
 
 <div
@@ -142,4 +130,4 @@
     </div>
   </div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %} {% endfor %} {% endblock %}
