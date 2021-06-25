@@ -29,6 +29,9 @@ def comment(request, id):
         form=CommentForm()
         return render(request, 'main.html', {'blog':blog, 'form':form})     
 
+
+
+
 def create(request, blog=None):
     if request.method == 'POST':
         form = CreateForm(request.POST)
@@ -40,7 +43,7 @@ def create(request, blog=None):
             return redirect('main')
     else:
         form = CreateForm(instance=blog)
-        return render(request, 'main.html', {'form':form})
+        return render(request, 'write.html', {'form':form})
     # blog = Blog()
     # blog.title = request.POST['title']
     # blog.content = request.POST['content']
@@ -49,12 +52,15 @@ def create(request, blog=None):
     # blog.save()
     # return redirect('main')
 
+
+
 def edit(request, id):
     edit_blog = Blog.objects.get(id=id)
     return render(request, 'edit.html', {'blog': edit_blog})
 
 def update(request, id):
     post = get_object_or_404(Blog, id=id)
+    blog = CreateForm()
     if request.method == 'POST':
         blog = CreateForm(request.POST, instance = post)
         if blog.is_valid():
@@ -65,6 +71,7 @@ def update(request, id):
     else:
         blog = CreateForm(instance = post)
         return render(request, 'main.html', {'blog':blog})
+
 
     # update_blog = Blog.objects.get(id=id)
     # update_blog.title = request.POST['title']
@@ -99,3 +106,5 @@ def hashtagform(request, hashtag=None):
 def search(request, hashtag_id):
     hashtag=get_object_or_404(Hashtag, pk=hashtag_id)
     return render(request, 'search.html', {'hashtag':hashtag})
+
+
