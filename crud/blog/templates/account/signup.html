@@ -3,7 +3,8 @@
 {% block posts %}
     <form method="post" action="{% url 'signup' %}">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form1.as_p }}
+        {{ form2.as_p }}
         <button type="submit">가입</button>
     </form>
 {% endblock %}
