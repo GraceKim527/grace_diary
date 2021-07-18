@@ -9,7 +9,7 @@
         <form action="{% url 'hashtag' %}" method="POST" class="hashtagForm">
             {% csrf_token %}
             <div class="textForm">
-                <input type="text" required class="textInput" name="hashtag" id="hashtag">
+                <input type="text" required class="textInput" name="name" id="name">
                 <label class="textLabel" for="name">해시태그</label>
                 <span class="spanOverlay"></span>
                 <span class="spanBase"></span>
