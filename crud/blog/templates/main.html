@@ -116,11 +116,15 @@
               <div class="writer_tool">
               <h4>작성자 : {{ blog.writer }}  <h5>{{ blog.pub_date }}</h5></h4>
             </div>
-              <br />
+              <br>
               <p class="내용">{{ blog.content }}</p>
               {% for hashtag in blog.hashtags.all %}
                 <span>{{ hashtag.name }}</span>
               {% endfor %}
+              <br><br>
+              {% if blog.image %}
+                <img src="{{ blog.image.url }}" width="500" height="450" alt="Card image cap">
+              {% endif %}
               <br><br>
               <a class="btn btn-primary" href="{% url 'edit' blog.id %}" data-bs-dismiss="modal">
                 <i class="fas fa-times fa-fw"></i>
@@ -136,9 +140,11 @@
             {% endfor %} 
             <form method ="POST" action="{% url 'comment' blog.id %}">
               {% csrf_token %}
-              <p><label for="id_text">댓글 : </label> 
+              <br><br>
+              <p>
+                <label for="id_text">댓글 : </label> 
                 <input type="text" name="text" maxlength="50" required="" id="id_text"></p>
-              <input type="submit" value="submit">
+              <button type="submit" class="commentsubmitBtn">저장</button>
             </form>
           </div>
         </div>

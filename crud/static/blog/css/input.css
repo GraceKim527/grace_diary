@@ -1,0 +1,149 @@
+.form > * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.form {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 24px;
+}
+
+
+.textForm {
+    position: absolute;
+    height: 60px;
+    width: 500px;
+}
+
+.textLabel {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    transform-origin: left;
+    transition: all .3s;
+}
+
+.textInput {
+    position: relative;
+    all: unset;
+    padding: 0px 12px;
+    /* background-color: pink; */
+    width: 100%;
+    height: 100%;
+}
+
+
+.textInput:valid ~ .spanBase,
+.textInput:focus ~ .spanBase {
+    transform: scaleX(1);
+}
+
+.textInput:valid ~ .textLabel,
+.textInput:focus ~ .textLabel {
+    transform: translateY(-80%) scale(0.8);
+}
+
+.spanOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: pink;
+    opacity: 0.2;
+}
+
+.spanBase{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: pink;
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s;
+}
+
+.contentForm {
+    position: relative;
+    width: 500px;
+    height: 300px;
+}
+
+.content {
+    all: unset;
+    width: 100%;
+    height: 100%;
+}
+
+.contentLabel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s;
+}
+
+.content:valid ~ .spanBase,
+.content:focus ~ .spanBase {
+    transform: scaleX(1);
+}
+
+.content:valid ~ .contentLabel,
+.content:focus ~ .contentLabel {
+    transform: translateY(-80%) scale(0.8);
+}
+
+.submitBtn {
+    all: unset;
+    width: 180px;
+    height: 70px;
+    border-radius: 12px;
+    text-align: center;
+    background-color: pink;
+
+    font-weight: bold;
+    transition: all .3s;
+}
+
+.submitBtn:hover {
+    background-color: hotpink;
+    color: white;
+}
+
+.commentsubmitBtn {
+    all: unset;
+    width: 90px;
+    height: 35px;
+    border-radius: 12px;
+    text-align: center;
+    background-color: pink;
+
+    font-weight: bold;
+    transition: all .3s;
+}
+
+.commentsubmitBtn:hover {
+    background-color: hotpink;
+    color: white;
+}
+
+.main_form{
+    all: unset;
+    background-color: aquamarine;
+}
+
+.main_form >p{
+    all: unset;
+}

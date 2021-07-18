@@ -29,12 +29,9 @@ def comment(request, id):
         form=CommentForm()
         return render(request, 'main.html', {'blog':blog, 'form':form})     
 
-
-
-
 def create(request, blog=None):
     if request.method == 'POST':
-        form = CreateForm(request.POST)
+        form = CreateForm(request.POST, request.FILES)
         if form.is_valid():
             blog = form.save(commit = False)
             blog.pub_date = timezone.now()
@@ -106,5 +103,3 @@ def hashtagform(request, hashtag=None):
 def search(request, hashtag_id):
     hashtag=get_object_or_404(Hashtag, pk=hashtag_id)
     return render(request, 'search.html', {'hashtag':hashtag})
-
-

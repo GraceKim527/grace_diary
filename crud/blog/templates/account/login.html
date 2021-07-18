@@ -4,7 +4,20 @@
 {% block posts %}
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">로그인</button>
+        <br>
+        <div class="textForm">
+            <input type="text" required class="textInput" name="id" id="id">
+            <label class="textLabel" for="id">아이디</label>
+            <span class="spanOverlay"></span>
+            <span class="spanBase"></span>
+        </div>
+
+        <div class="textForm">
+            <input type="text" required class="textInput" name="pw" id="pw">
+            <label class="textLabel" for="pw">비밀번호</label>
+            <span class="spanOverlay"></span>
+            <span class="spanBase"></span>
+        </div>
+        <button type="submit" class="submitBtn">로그인</button>
     </form>
 {% endblock %}

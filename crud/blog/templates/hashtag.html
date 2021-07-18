@@ -8,10 +8,15 @@
         {{ error_message }}
         <form method="POST">
             {% csrf_token %}
-            <table>
-                {{form.as_table}}
-            </table>
-            <input class="btn btn-dark" type="submit" value="제출하기">
+            <div class="textForm">
+                <input type="text" required class="textInput" name="hashtag" id="hashtag">
+                <label class="textLabel" for="writer">해시태그</label>
+                <span class="spanOverlay"></span>
+                <span class="spanBase"></span>
+            </div>
+            <br>
+            
+            <button type="submit" class="submitBtn">저장</button>
         </form>
     </div>
 </div>

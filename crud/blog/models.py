@@ -9,6 +9,7 @@ class Blog(models.Model):
     content = models.TextField()
     writer = models.CharField(max_length=100)
     hashtags = models.ManyToManyField('Hashtag', blank=True)
+    image = models.ImageField(upload_to='images/', blank=True)
 
     def __str__(self):
         return self.title

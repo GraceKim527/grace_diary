@@ -1,6 +1,8 @@
 from django.urls import path
 from django.urls.resolvers import URLPattern
 from blog import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns=[
     path('', views.main, name = 'main'),
@@ -12,4 +14,4 @@ urlpatterns=[
     path('comment/<str:id>', views.comment, name='comment'),
     path('hashtag/', views.hashtagform, name='hashtag'),
     path('<int:hashtag_id>/search/', views.search, name='search'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
