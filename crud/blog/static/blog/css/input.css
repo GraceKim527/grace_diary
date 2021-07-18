@@ -14,7 +14,6 @@
     gap: 24px;
 }
 
-
 .textForm {
     position: relative;
     height: 60px;
@@ -145,4 +144,28 @@
 .commentsubmitBtn:hover {
     background-color: hotpink;
     color: white;
+}
+
+.hashtagForm {
+    width: 50vw;
+    height: 50vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 24px;
+}
+
+.idpwForm {
+    width: 100vw;
+    height: 50vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 24px;
 }

@@ -1,10 +1,43 @@
 {% extends 'base.html' %}
 
 {% block posts %}
-    <form method="post" action="{% url 'signup' %}">
+    <form method="post" class="form" action="{% url 'signup' %}">
         {% csrf_token %}
-        {{ form1.as_p }}
-        {{ form2.as_p }}
-        <button type="submit">가입</button>
+        <div class="textForm">
+            <input type="text" required class="textInput" name="username" id="username">
+            <label class="textLabel" for="id">Username</label>
+            <span class="spanOverlay"></span>
+            <span class="spanBase"></span>
+        </div>
+
+        <div class="textForm">
+            <input type="text" required class="textInput" name="password" id="password">
+            <label class="textLabel" for="id">PassWord</label>
+            <span class="spanOverlay"></span>
+            <span class="spanBase"></span>
+        </div>
+
+        <div class="textForm">
+            <input type="text" required class="textInput" name="password_re" id="password_re">
+            <label class="textLabel" for="id">Password confirmation</label>
+            <span class="spanOverlay"></span>
+            <span class="spanBase"></span>
+        </div>
+
+        <div class="textForm">
+            <input type="text" required class="textInput" name="age" id="age">
+            <label class="textLabel" for="id">Age</label>
+            <span class="spanOverlay"></span>
+            <span class="spanBase"></span>
+        </div>
+
+        <div class="textForm">
+            <input type="text" required class="textInput" name="address" id="address">
+            <label class="textLabel" for="id">Address</label>
+            <span class="spanOverlay"></span>
+            <span class="spanBase"></span>
+        </div>
+
+        <button type="submit" class="submitBtn">회원가입</button>
     </form>
 {% endblock %}

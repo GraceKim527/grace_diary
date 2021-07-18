@@ -12,8 +12,27 @@ def main(request):
     hashtags = Hashtag.objects
     return render(request, 'main.html', {'blogs':blogs, 'c_form':c_form, 'hashtags':hashtags})
 
+
+def create(request, blog=None):
+    if request.method == 'POST':
+        form = CreateForm(request.POST, request.FILES)
+        if form.is_valid():
+            blog = form.save(commit = False)
+            blog.pub_date = timezone.now()
+            blog.save()
+            form.save_m2m()
+            return redirect('main')
+    else:
+        form = CreateForm(instance=blog)
+        hashtags = Hashtag.objects
+        return render(request, 'write.html', {'form':form, 'hashtags': hashtags})
+
+
 def write(request):
-    return render(request, 'write.html')
+    form = CreateForm()
+    hashtags = Hashtag.objects
+    return render(request, 'write.html', {'form':form, 'hashtags': hashtags})
+
 
 def comment(request, id):
     blog = get_object_or_404(Blog,id=id)
@@ -29,18 +48,7 @@ def comment(request, id):
         form=CommentForm()
         return render(request, 'main.html', {'blog':blog, 'form':form})     
 
-def create(request, blog=None):
-    if request.method == 'POST':
-        form = CreateForm(request.POST, request.FILES)
-        if form.is_valid():
-            blog = form.save(commit = False)
-            blog.pub_date = timezone.now()
-            blog.save()
-            form.save_m2m()
-            return redirect('main')
-    else:
-        form = CreateForm(instance=blog)
-        return render(request, 'write.html', {'form':form})
+
     # blog = Blog()
     # blog.title = request.POST['title']
     # blog.content = request.POST['content']
@@ -83,6 +91,10 @@ def delete(request, id):
     delete_blog.delete()
     return redirect('main')
 
+
+
+
+
 def hashtagform(request, hashtag=None):
     if request.method == 'POST':
         form = HashtagForm(request.POST, instance=hashtag)
@@ -96,9 +108,10 @@ def hashtagform(request, hashtag=None):
                 hashtag.name = form.cleaned_data['name']
                 hashtag.save()
             return redirect('main')
-    else:
-        form = HashtagForm(instance=hashtag)
-        return render(request, 'hashtag.html', {'form':form})
+    form = HashtagForm(instance=hashtag)
+    return render(request, 'hashtag.html', {'form':form})
+
+
 
 def search(request, hashtag_id):
     hashtag=get_object_or_404(Hashtag, pk=hashtag_id)

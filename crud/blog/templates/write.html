@@ -1,55 +1,54 @@
-{% extends 'base.html' %} 
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block posts %}
+<form
+  class="form"
+  action="{% url 'create' %}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %}
 
-{% block posts %}
-<form class="form" action = "{% url 'create' %}" method = "POST" enctype="multipart/form-data">
+  <div class="textForm">
+    <input type="text" required class="textInput" name="title" id="title" />
+    <label class="textLabel" for="title">제목</label>
+    <span class="spanOverlay"></span>
+    <span class="spanBase"></span>
+  </div>
 
+  <div class="textForm">
+    <input type="text" required class="textInput" name="writer" id="writer" />
+    <label class="textLabel" for="writer">작성자</label>
+    <span class="spanOverlay"></span>
+    <span class="spanBase"></span>
+  </div>
 
-    {% csrf_token %}
-    
-    <div class="textForm">
-        <input type="text" required class="textInput" name="title" id="title">
-        <label class="textLabel" for="title">제목</label>
-        <span class="spanOverlay"></span>
-        <span class="spanBase"></span>
-    </div>
+  <div class="contentForm">
+    <textarea
+      name="content"
+      required
+      class="content"
+      id="content"
+      cols="30"
+      rows="10"
+    ></textarea>
+    <label class="contentLabel" for="content">내용</label>
+    <span class="spanOverlay"></span>
+    <span class="spanBase"></span>
+  </div>
 
-    <div class="textForm">
-        <input type="text" required class="textInput" name="writer" id="writer">
-        <label class="textLabel" for="writer">작성자</label>
-        <span class="spanOverlay"></span>
-        <span class="spanBase"></span>
-    </div>
+  <select name="hashtag" id="hashtag" multiple>
+    <option value="">--Please choose an option--</option>
+    {% for hashtag in hashtags.all %}
+    <option value="{{ hashtag.name }}">{{ hashtag.name }}</option>
+    {% endfor %}
+  </select>
 
-    <div class="contentForm">
-        <textarea name="content" required class="content" id="content" cols="30" rows="10"></textarea>
-        <label class="contentLabel" for="content">내용</label>
-        <span class="spanOverlay"></span>
-        <span class="spanBase"></span>
-    </div>
+  {{hashtags}}
 
+  <div>
+    <input type="file" name="image" accept="image/*" id="image" />
+  </div>
 
-    <div class="related-widget-wrapper">
-        <select name="hashtags" id="hashtags" multiple>
-            {% for hashtag in blog.hashtag.all %}
-                <option value="{{ hashtag.name }}">{{ hashtag.name }}</option>
-                </option>
-            {% endfor %}
-        </select>
-    </div>
-
-    <div>
-        <input type="file" name="image" accept="image/*" id="image">
-    </div>
-
-    <button type="submit" class="submitBtn">저장</button>
-
-
-
+  <button type="submit" class="submitBtn">저장</button>
 </form>
 
-
-{% endblock %} 
-
-
-
+{% endblock %}

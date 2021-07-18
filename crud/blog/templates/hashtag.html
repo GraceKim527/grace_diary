@@ -6,11 +6,11 @@
 <div class="container">
     <div class="col-lg-8 col-md-10 mx-auto">
         {{ error_message }}
-        <form method="POST">
+        <form action="{% url 'hashtag' %}" method="POST" class="hashtagForm">
             {% csrf_token %}
             <div class="textForm">
                 <input type="text" required class="textInput" name="hashtag" id="hashtag">
-                <label class="textLabel" for="writer">해시태그</label>
+                <label class="textLabel" for="name">해시태그</label>
                 <span class="spanOverlay"></span>
                 <span class="spanBase"></span>
             </div>
