@@ -8,7 +8,7 @@ class Blog(models.Model):
     pub_date = models.DateTimeField('date')
     content = models.TextField()
     writer = models.CharField(max_length=100)
-    hashtags = models.ManyToManyField('Hashtag', blank=True)
+    hashtags = models.ManyToManyField('Hashtag')
     image = models.ImageField(upload_to='images/', blank=True)
 
     def __str__(self):

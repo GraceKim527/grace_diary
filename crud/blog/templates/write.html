@@ -35,14 +35,11 @@
     <span class="spanBase"></span>
   </div>
 
-  <select name="hashtag" id="hashtag" multiple>
-    <option value="">--Please choose an option--</option>
+  <select name="hashtag" required id="hashtags" multiple>
     {% for hashtag in hashtags.all %}
     <option value="{{ hashtag.name }}">{{ hashtag.name }}</option>
     {% endfor %}
   </select>
-
-  {{hashtags}}
 
   <div>
     <input type="file" name="image" accept="image/*" id="image" />

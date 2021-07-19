@@ -91,10 +91,6 @@ def delete(request, id):
     delete_blog.delete()
     return redirect('main')
 
-
-
-
-
 def hashtagform(request, hashtag=None):
     if request.method == 'POST':
         form = HashtagForm(request.POST, instance=hashtag)
